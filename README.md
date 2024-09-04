@@ -19,7 +19,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/your-username/guessing-lucky-number.git
+git clone https://github.com/vvyguptha/lucky_number_guessing_game.git
 cd game1
 Set up the Django environment:
 
