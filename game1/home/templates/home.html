@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guessing Lucky Number</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #wrapper {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        #guessField {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .guessSubmit {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .guessSubmit:hover {
+            background-color: #0056b3;
+        }
+
+        .resultParas {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #495057;
+        }
+
+        .lastResult {
+            font-weight: bold;
+            color: #28a745; /* Green for positive feedback */
+        }
+
+        .lowOrHi {
+            color: #dc3545; /* Red for negative feedback */
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Guess the Lucky Number</h1>
+        <p>You have to guess a number in 5 chances.</p>
+        <p>The number is between 1 to 100.</p>
+        <br>
+        <label for="guessField" id="guess">Guess a number:</label>
+        <input type="number" id="guessField" class="guessField">
+        <button type="submit" id="subt" value="Submit guess" class="guessSubmit" onclick="validate()">Submit guess</button>
+        <!--{{number}} -->
+        
+        <div class="resultParas">
+            <p>Total Guesses: <span class="lastResult">5</span></p>
+            <p class="lowOrHi"></p>
+        </div>
+    </div>
+    <script>
+        // Ensure 'c' is defined globally or initialized before use
+        var c = 5; // Initialize the number of chances
+
+        function validate() {
+            var n = document.getElementById("guessField").value;
+            var ln = Number("{{number}}");
+
+            // Check if the input is empty
+            if (n === '') {
+                alert('Please enter a number');
+                return;
+            }
+
+            // Convert input to a number
+            n = Number(n);
+
+            // Debugging: Log values to the console
+            console.log('User guess:', n);
+            console.log('Lucky number:', ln);
+            console.log('Chances remaining:', c);
+
+            // Check if the guess is correct
+            
+            if (n === ln) {
+                alert('Your guess is correct!');
+                // Optionally, disable further input or show a success message
+                return;
+            } else if (n > ln) {
+                alert('Number is too high!\nChances remaining: ' + (c - 1));
+                c = c - 1;
+            } else {
+                alert('Number is too low!\nChances remaining: ' + (c - 1));
+                c = c - 1;
+            }
+
+            // Optionally, handle the case when no chances are left
+            if (c <= 0) {
+                alert('Game over! No chances remaining.\n The lucky number is '+ ln);
+                // Optionally, disable further input or show a game over message
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
